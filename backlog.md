@@ -1,0 +1,4 @@
+- Print each calculation step, as the Valsimulator does
+- Implement stuff for actual usage
+- Choice for "must be exactly 100%"
+- Choice for automatically adjusted Other party
