@@ -54,7 +54,7 @@ class Party {
 }
 
 
-class Seats {
+export default class Seats {
     parties = [];
 
     /**
