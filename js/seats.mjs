@@ -19,14 +19,6 @@
  */
 
 
-/**
- * @typedef PartyAllocation
- * @type {object}
- * @property {string} partyname - name of the party.
- * @property {number} seats - number of seats allocated.
- */
-
-
 class Constants {
     static threshold = 4;
     static startDivisor = 1.2;
@@ -88,7 +80,7 @@ export default class Seats {
      * Sets a new percentage for the given party and optionally reallocates seats to current parties
      * @param {string} partyname the name of the party
      * @param {number} percentage the new percentage of the party
-     * @param {boolean} reallocate whether seats shall be reallocated after percentage is set
+     * @param {boolean} reallocate whether seats shall be reallocated after percentage is set, default is true
      */
     setPercentage(partyname, percentage, reallocate = true) {
         let party = this._getParty(partyname);
@@ -104,13 +96,22 @@ export default class Seats {
     }
 
     /**
-     * Returns the current allocation of seats to the involved parties as an array of objects on the form of
-     * { partyname : seats }
-     * @returns {PartyAllocation[]} list of party allocations
+     * Returns the current allocation of seats to the involved parties as an object on the form of
+     * { partyname : seats, [...] }
+     * 
+     * @returns {Object.<string, number>} a list of objects with the keys name and seats
      */
     getAllocation() {
-        console.log((this._checkPartySizes() ? "Adds up 100 %" : "Does not add up to 100 % "));
-        return this.parties.map(party => ({ [party.name] : party.seats }));
+        return this.parties.reduce((allocation, party) => (allocation[party.name] = party.seats, allocation), {});
+    }
+
+    /**
+     * Returns true if percentages of parties add up to 100.0 %  (floating point 32-bit precision)
+     * @returns {boolean} whether parties add up to 100 %
+     */
+    checkPartySizes() {
+        let totalPercentage = Math.fround(this.parties.reduce((sum, party) => sum + party.percentage, 0));
+        return totalPercentage == 100;
     }
 
     /**
@@ -146,16 +147,6 @@ export default class Seats {
 
             remainingSeats--;
         }
-    }
-
-
-    /**
-     * Returns true if percentages of parties add up to 100.0 %  (floating point 32-bit precision)
-     * @returns {boolean} whether parties add up to 100 %
-     */
-    _checkPartySizes() {
-        let totalPercentage = Math.fround(this.parties.reduce((sum, party) => sum + party.percentage, 0));
-        return totalPercentage == 100;
     }
 
     /**
