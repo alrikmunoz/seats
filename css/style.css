@@ -1,0 +1,11 @@
+/* #inputs-container {
+	border: 1px solid black;
+}
+#results-container {
+	border: 1px solid black;
+}
+*/
+.partyinput {
+	display: block;
+	/* border: 1px solid black; */
+}
