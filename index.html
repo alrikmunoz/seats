@@ -7,8 +7,23 @@
     <script type="module" src="js/main.mjs"></script>
 </head>
 <body>
-    <h1>Seats</h1>
-    <div id="inputs-container"></div>
-    <div id="results-container"></div>
+    <div id="wrapper">
+        <h1>Seats</h1>
+        <section id="inputs-section">
+            <div id="inputs-container"></div>
+            <div id="add-party-container">
+                <input id="add-party-input" type="text" name="newparty" placeholder="party name">
+                <button id="add-party-btn">Add party</button>
+            </div>
+        </section>
+
+        <section id="results-section">
+            <div id="result-bar-wrapper">
+                <div id="result-bar">
+                </div>
+            </div>
+            <hr style="transform: translate(90);">
+        </section>
+    </div>
 </body>
 <html

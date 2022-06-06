@@ -1,11 +1,49 @@
-/* #inputs-container {
-	border: 1px solid black;
+body {
+	font-family: Arial;
+	margin: 0;
+	background: #fafafa;
 }
-#results-container {
-	border: 1px solid black;
+h1 {
+	text-align: center;
 }
-*/
+#wrapper {
+	max-width: 1300px;
+	margin: auto;
+	background: #ffffff;
+	padding: 3em;
+	height: 100vh;
+	box-sizing: border-box;
+}
+#inputs-section {
+	text-align: center;
+}
 .partyinput {
-	display: block;
+	display: inline-block;
+	padding: 1.5em;
+}
+.partyinput > span {
+	display:  block;
+	text-align: center;
+	margin-bottom: 0.4em;
+}
+.partyinput > input {
+	max-width: 4em;
+	padding: 0.3em;
+}
+
+#results-section {
 	/* border: 1px solid black; */
+}
+#result-bar-wrapper {
+	border: 1px solid black;
+}
+#result-bar {
+	height: 10em;
+}
+
+#result-bar > div {
+	/* background: red;
+	width: 50%; */
+	height: 100%;
+	display: inline-block;
 }
