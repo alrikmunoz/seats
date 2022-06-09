@@ -78,7 +78,7 @@ export default class Seats {
     }
 
     /**
-     * Returns true if percentages of parties add up to 100.0 %  (floating point 32-bit precision)
+     * Returns true if percentages of parties add up to 100.0 %
      * @param {Object.<string, number>} votes an object made up of key-value pairs of partyname : voteshare
      * @returns {boolean} whether parties add up to 100 %
      */
@@ -92,7 +92,7 @@ export default class Seats {
      * @returns {number} the sum
      */
     summarizeValues(object) {
-        return Math.fround(Object.keys(object).reduce((sum, key) => sum + object[key], 0));
+        return Object.keys(object).reduce((sum, key) => sum + object[key], 0);
     }
     /**
      * Given an array of {@link Party} objects, returns the current allocation of seats among them as an object on the form of

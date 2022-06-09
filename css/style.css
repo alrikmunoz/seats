@@ -17,6 +17,10 @@ h1 {
 #inputs-section {
 	text-align: center;
 }
+#party-sizes-warning {
+	font-size: small;
+	color: #999999;
+}
 .partyinput {
 	display: inline-block;
 	padding: 1.5em;

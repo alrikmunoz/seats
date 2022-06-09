@@ -4,6 +4,7 @@ class Constants {
     static partyInputContainer = document.querySelector("#inputs-container");
     static results = document.querySelector("#results-section");
     static resultsBar = document.querySelector("#result-bar");
+    static partySizesWarning = document.querySelector("#party-sizes-warning");
     static defaultPartyConfig = [
         { "name" : "V", "color" : "rgb(193, 13, 20)" },
         { "name" : "S", "color" : "rgb(237, 27, 52)" },
@@ -81,19 +82,21 @@ function createPartyInput(seats, partyname, vote) {
     input.max = 100;
     input.step = "any";
     input.value = vote;
-    input.addEventListener("input", () => {
-        // console.log(seats.summarizeValues(votes));
-        // if (!seats.checkPartySizes(votes)) 
-        //     console.warn("Voteshare does not add upp to 100 %");
-
-        let votes = collectInputData();
-        showAllocation(seats.allocate(votes));
-        // update graphical input
-    });
+    input.addEventListener("input", () => onPartyVoteChange(seats));
 
     label.appendChild(partynameText);
     label.appendChild(input);
     return label;
+}
+
+function onPartyVoteChange(seats) {
+    let votes = collectInputData();
+    let voteSum = seats.summarizeValues(votes)
+    console.log(voteSum);
+    Constants.partySizesWarning.textContent = `total: ${voteSum.toFixed(2) == "100.00" ? 100 : voteSum.toFixed(2)}%`
+    showAllocation(seats.allocate(votes));
+    // update graphical input
+
 }
 
 function addPartyClick(seats, input) {
